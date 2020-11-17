@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Header -->
+    <%- include('partials/headerPost') %>
+    <!-- /Header -->
+    <h1>Listado de Todas las Peliculas</h1>
+    <section>        
+        <article>         
+            <ul>
+                <% movies.forEach(movie => { %>
+                    <li>
+                        <h4><a href="/movies/detail/<%= movie.id %>"><%= movie.title %></a></h4>
+                            <h5>Rating: <%= movie.rating %> </h5>
+                            <h5>Premios:  <%= movie.awards %> </h5>
+                            <% if(movie.generos) { %> <!-- PARA QUE NO DE ERROR YA QUE ALGUNAS PELIS NO TIENE GENERO, SON NULL -->
+                            <h5>Genero: <%=movie.generos.name%> </h5>  <!-- DEBO USAR genero Y NO Genre, ya que asi llame a la relacion -->
+                            <% } %>
+                            <h5>Duracion: <%= movie.length %> </h5>
+                            <h5>Estreno: <%= movie.release_date %> </h5>
+                            <% if(movie.actores) { %>
+                                <h5>Actores:  </h5>
+                                <ul> 
+                                    <% movie.actores.forEach(actor => { %>
+                                        <li>
+                                            <h5><%= actor.first_name %> <%= actor.last_name %> </h5>
+                                        </li>
+                                    <% } ) %>                                                                    
+                                </ul>                                    
+                            <% } %>                                    
+                            <p></p>                                                                          
+                        
+                <% } ) %> 
+            </ul>
+        </article>
+    </section>
+</body>
+</html>

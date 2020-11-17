@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('partials/headerPost') %>
+
+<body>
+    <h1 >Listado de Peliculas</h1>
+    <section>        
+        <article>          
+            <ul>
+                <% foundMovies.forEach(movie => { %>
+                    <li>
+                        <h4><a href="/movies/detail/<%= movie.id %>"><%= movie.title %></h4>
+                            <h5>Rating: <%= movie.rating %> </h5>
+                            <h5>Premios:  <%= movie.awards %> </h5>
+                            <h5>Genero: <%= movie.genre_id %> </h5>
+                            <h5>Duracion: <%= movie.length %> </h5>
+                            <h5>Estreno: <%= movie.release_date %> </h5>
+                            <br>
+                        </a>    
+                        <p></p>                                          
+                    </li>
+                <% }) %>
+            </ul>
+        </article>
+    </section>
+</body>
+</html>

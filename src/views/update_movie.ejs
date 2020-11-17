@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/headerPost') %>
+</head>
+<body>
+    <main>
+
+        <h1>Formulario de edicion de Pelicula </h1>
+        <form action="/movies/update/<%= toEdit.id %>?_method=PUT " method="POST"> <!--esto debe ir por PUT, instalar method override -->
+            <label for="">Title</label>
+            <input type="text" name="title" value="<%= toEdit.title %>">
+            <p></p>
+            <label for="">Rating</label>
+            <input type="text" name="rating" value="<%= toEdit.rating %>">
+           <p></p>
+            <label for="">Awards</label>
+            <input type="text" name="awards" value="<%= toEdit.awards %>">
+            <p></p>
+            <label for="">Release Date</label>
+            <input type="date" name="release_date" value="<%= toEdit.release_date %>"> 
+            <p></p>
+            <label for="">Length</label>
+            <input type="text" name="length" value="<%= toEdit.length%>">
+            <p></p>
+            <label for="">Genre</label>
+            <select name="genre_id" >
+                <% generos.forEach(genero => { %>
+                    <% if (toEdit.genre_id === genero.id){ %>
+                    <option value="<%= genero.id %>" selected> <%= genero.name %> </option> <!--muestro ya seleccionado el genero original de la peli-->
+                    <%}  else { %>
+                    <option value="<%= genero.id %>"> <%= genero.name %> </option> <!--no habia genero nada seleccionado-->    
+                    <% } %>
+               <% }) %>
+            </select>            
+            <p></p>
+            <label for="">Actors</label>
+            <select name="actores" multiple> <!--multiple es para poder seleccionar varios actores-->
+                <% actores.forEach(actor => { %>
+                    <% if (toEdit.actores.some(actorPelicula => actorPelicula.id == actor.id)) { %>  <!--some devuelve true o false, por eso si da true entra al if-->  
+                    <option value="<%= actor.id %>" selected><%= actor.first_name %> <%= actor.last_name %> </option> <!--el value genero id es para que mande el numero de genero a guardar en la BD-->
+                    <% } else { %>
+                    <option value="<%= actor.id %>"><%= actor.first_name %> <%= actor.last_name %> </option>  
+                    <% } %>  
+               <% }) %>
+            </select>  
+            <p></p>
+            <button type="submit">Update!</button>
+            <p></p>
+            <a href="/movies/"> <button> Cancelar </button></a>
+        
+        
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('partials/headerPost') %>
+</head>
+<body>
+    <h1>Detalle de la pelicula titulada:  <%= oneMovie.title %>  </h1>
+    <section>                                                                        
+             <h3> Numero de ID: <%= oneMovie.id %></h3>     
+             <h3> Rating: <%= oneMovie.rating %></h3>   
+             <h3> Cantidad de premios: <%= oneMovie.awards %></h3>   
+             <% if(oneMovie.generos) { %> <!-- PARA QUE NO DE ERROR YA QUE ALGUNAS PELIS NO TIENE GENERO, SON NULL -->
+                <h3>Genero: <%=oneMovie.generos.name%> </h3>  <!-- DEBO USAR genero Y NO Genre, ya que asi llame a la relacion -->
+             <% } %>                                       
+             <p></p>
+             <h3> Duracion: <%= oneMovie.length %> minutos</h3>
+             <h3> Fecha de estreno: <%= oneMovie.release_date %> </h3>                           
+             <% if(oneMovie.actores) { %>
+                <h3>Actores:  </h3>
+                <ul> 
+                    <% oneMovie.actores.forEach(actor => { %>
+                        <li>
+                            <h3><%= actor.first_name %> <%= actor.last_name %> </h3>
+                        </li>
+                    <% } ) %>                                                                    
+                </ul>                                    
+             <% } %>  
+
+             <a href="/movies/update/<%= oneMovie.id %>"> 
+                <button> Modificar </button>
+            </a>  
+             <p></p>
+             <form action="/movies/delete/<%= oneMovie.id %>?_method=DELETE" method="POST">
+                <button type="submit">Borrar</button>
+            </form>       
+    </section>
+        </body>
+</html>

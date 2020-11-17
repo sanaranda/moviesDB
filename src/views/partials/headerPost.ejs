@@ -1,0 +1,46 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Peliculas SA | </title>
+</head>
+
+<header>  
+    <form action="/movies/search" method="POST" >
+        <label for='keywords'>Palabras a Buscar: </label>        
+        <input type="text" name="keywordsPost"  >
+        
+        <label for="">  Orden:</label>
+        
+        <select name="orden">  
+                <option value="title"> Titulo</option>           
+                <option value="rating"> Rating</option> 
+                <option value="awards"> Premios</option>
+                <option value="genre"> Genero</option>  
+                <option value="length"> Duracion</option> 
+                <option value="release_date"> Estreno</option>                                              
+        </select>            
+        
+        <select name="asc_desc">  
+            <option value="ASC"> Acendente</option>           
+            <option value="DESC"> Descendente</option>                                              
+        </select>            
+        <p></p>        
+        <button type="submit" > Buscar </button>
+    </form>
+    <p></p>
+    <a href="/movies/recommended"> Recomendadas</a>
+  
+    <a href="/movies/new"> Recientes</a>
+    
+    <a href="/movies/"> Todas</a>
+    <p></p>
+    <a href="/movies/create"> <button> Crear nueva Pelicula</button></a>
+
+
+
+</header>
+    
+        
+
+
